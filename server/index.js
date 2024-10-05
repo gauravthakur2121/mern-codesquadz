@@ -1,13 +1,25 @@
+'Access-Control-Allow-Origin'
 const express = require("express")
 const app = express();
 require("dotenv").config();
-const myroute = require('./Routes/myroutes')
+const myRoute = require('./Routes/myRoutes')
+const userRoute = require('./Routes/userRoutes')
+const cors  = require('cors')
 require('./Database/mydatabaseconnection')
-const myport = process.env.PORT || 8000
 
-app.use(myroute)
+
+
 app.use(express.json())
+app.use(cors())
 
+app.get('/' , (req , res)=>{
+    res.send("welcome to expree js")
+})
+
+app.use('/api',myRoute)
+app.use('/api/users',userRoute)
+
+const myport = process.env.PORT || 8000
 app.listen(myport , ()=>{
-    console.log(`server is running ${myport}`)
+    console.log(`server is running http://localhost:${myport}`)
 })
