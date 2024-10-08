@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import AnimatedNavbar from "../shares/Navbar";
 
 const Register = () => {
@@ -12,6 +14,18 @@ const Register = () => {
     confirmPassword: "",
   });
 
+  const notify = () => toast.success('🦄 Register Succesfully!', {
+    position: "top-left",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+    });
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -20,12 +34,11 @@ const Register = () => {
     });
   };
 
+
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevents default form submission
 
     const { name, email, password, confirmPassword } = formData;
 
-    // Basic validation to ensure no empty fields
     if (!name || !email || !password || !confirmPassword) {
       return alert("Please fill all fields");
     }
@@ -53,6 +66,7 @@ const Register = () => {
 
       const data = await res.json();
       console.log(data);
+      e.preventDefault(); 
       alert("Welcome to registration!");
     } catch (error) {
       console.error("Error during registration:", error);
@@ -121,9 +135,21 @@ const Register = () => {
                     />
                   </Form.Group>
                   
-                  <button type="submit" className="btn btn-success c-btn">
+                  <button type="submit" className="btn btn-success c-btn" onClick={notify}>
                     Register Now
                   </button>
+                  <ToastContainer
+                  position="top-left"
+                  autoClose={5000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="dark"
+                  />
                   <Link to="/login" className="ms-3">Login page</Link>
                 </Form>
               </div>

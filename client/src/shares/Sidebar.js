@@ -16,7 +16,7 @@ const Sidebar = () => {
         <div className="collapse" id="home-collapse">
           <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li><Link to="/dashboard" className="link-body-emphasis d-inline-flex text-decoration-none rounded">Dashboard</Link></li>
-            <li><Link to="service" className="link-body-emphasis d-inline-flex text-decoration-none rounded">fetch</Link></li>
+            <li><Link to="/datauser" className="link-body-emphasis d-inline-flex text-decoration-none rounded">Datauser</Link></li>
             <li><Link to="contact" className="link-body-emphasis d-inline-flex text-decoration-none rounded">condition return</Link></li>
             <li><Link to="myaxios" className="link-body-emphasis d-inline-flex text-decoration-none rounded">axios</Link></li>
             <li><Link to="myprops" className="link-body-emphasis d-inline-flex text-decoration-none rounded">props</Link></li>

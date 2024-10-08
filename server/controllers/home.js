@@ -14,6 +14,20 @@ module.exports.home=async(req,res)=>{
 
 }
 
+module.exports.deleterecord=async(req,res)=>{
+    try{
+        const {id} = req.params;
+        const del = await Data.findByIdAndDelete({"_id":id});
+        console.log(del);
+        res.status(256).json(del);
+    }
+    catch (error) {
+        res.status(500).json({msg:"error"})
+    }
+}
+
+
+
 module.exports.addData=async(req,res)=>{
     try {
         const {name, age, classe, department}=req.body;

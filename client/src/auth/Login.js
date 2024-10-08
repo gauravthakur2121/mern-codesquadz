@@ -1,13 +1,27 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import AnimatedNavbar from "../shares/Navbar";
+import { json } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const notify = () => toast.success('🦄 Login Successfully!', {
+    position: "top-left",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+    });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,11 +31,35 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle login logic
-    console.log(formData);
+  const handleSubmit = async (e) => {
+    const {email , password} = formData;
+
+    if(!email || !password){
+      return alert("please fill the fields");
+    }
+    try{
+      const res = await fetch("http://localhost:5000/api/login/loginuser" , {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          email,
+          password
+        })
+      });
+      if(!res.ok){
+        throw new Error("Failed to Logged In : please try again")
+      }
+      const data = res.json()
+      console.log(data);
+      e.preventDefault(); 
+
+    } catch (error) {
+      console.error("Error during Logged In:", error);
+      alert("Error during Login: " + error.message);
+    }
   };
+   
+
 
   return (
     <>
@@ -61,9 +99,21 @@ const Login = () => {
                   />
                 </Form.Group>
 
-                <Button variant="primary" type="submit" className="w-100">
+                <Button variant="primary" type="submit" className="w-100" onClick={notify}>
                   Login
                 </Button>
+                <ToastContainer
+position="top-left"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="dark"
+/>
               </Form>
             </div>
           </Col>

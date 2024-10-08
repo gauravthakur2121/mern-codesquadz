@@ -2,7 +2,7 @@ import React from 'react'
 import Sidebar from '../shares/Sidebar'
 import AnimatedNavbar from '../shares/Navbar'
 import { Outlet } from 'react-router-dom'
-// import DataTable from '../shares/Datatable'
+  // import DataTable from '../shares/Datatable'
 import Simpletable from '../shares/Simpletable'
 
 const Mylandingpage = () => {
@@ -23,7 +23,7 @@ const Mylandingpage = () => {
                      <div className='row'>
                       <div className='col-md-12 mb-3 mt-2'>
                         <Simpletable/>
-                        {/* <DataTable/> */}
+                          {/*<DataTable/> */}
 
                       </div>
                     </div>
