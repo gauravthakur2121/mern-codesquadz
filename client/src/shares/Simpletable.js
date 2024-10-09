@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
@@ -146,8 +147,8 @@ const Simpletable = () => {
                   <td>{e.department}</td>
                   <td>{e.age}</td>
                   <td>{e.class}</td>
-                  <td className='right'>
-                    <button type="button" className="btn btn-primary right">View</button>
+                  <td className='text-center'>
+           <button type="button" className='btn btn-info text-white'><Link to={'/details/'+e._id}>View</Link></button>
                     <span><button type="button" className="btn btn-success">Edit</button></span>
                     <span>
                       <button 

@@ -4,8 +4,9 @@ import Login from './auth/Login'
 import Register from './auth/Register'
 import Mylandingpage from './dashboard/mylandingpage'
 import DataTable from './shares/datatable'
- // import Myhomepage from './shares/Myhomepage'
+import Userdetailspage from './shares/Userdetail'
 import './css/style.css'
+
 
 
 const App = () => {
@@ -18,9 +19,9 @@ const App = () => {
       <Route path='/login' element={<Login/>}></Route>
       <Route path='/register' element={<Register/>}></Route>
       <Route path='/datauser' element={<DataTable/>}></Route>
-      <Route path='/dashboard' element={<Mylandingpage/>}>
-     {/* <Route path='' element={<Myhomepage/>} /> */}
+      <Route path='/details/:id' element={<Userdetailspage/>}></Route>
       
+      <Route path='/dashboard' element={<Mylandingpage/>}>
       </Route>
      
 
